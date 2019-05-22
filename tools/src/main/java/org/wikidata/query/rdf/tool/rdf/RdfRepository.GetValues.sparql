@@ -1,15 +1,17 @@
 SELECT DISTINCT ?entity ?s
 WHERE {
-  VALUES ?entity {
-     %entityList%
+  graph <http://isi.edu/ckg/g/wd> {
+    VALUES ?entity {
+       %entityList%
+    }
+    ?entity ?statementPred ?statement .
+    FILTER( STRSTARTS(STR(?statement), "%uris.statement%") ) .
+    { ?statement %prov:wasDerivedFrom% ?ref .
+      ?ref ?expandedValuePred ?s .
+    } UNION {
+      ?statement ?somePred ?s .
+    }
+    FILTER( STRSTARTS(STR(?s), "%uris.value%") ) .
+    FILTER EXISTS { ?s ?p [] }
   }
-  ?entity ?statementPred ?statement .
-  FILTER( STRSTARTS(STR(?statement), "%uris.statement%") ) .
-  { ?statement %prov:wasDerivedFrom% ?ref .
-    ?ref ?expandedValuePred ?s .
-  } UNION {
-    ?statement ?somePred ?s .
-  }
-  FILTER( STRSTARTS(STR(?s), "%uris.value%") ) .
-  FILTER EXISTS { ?s ?p [] }
 }

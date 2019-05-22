@@ -1,9 +1,15 @@
 DELETE {
-  %root% %dateModified% ?o .
+  graph <http://isi.edu/ckg/g/wd> {
+  	%root% %dateModified% ?o .
+  }
 }
 WHERE {
-  %root% %dateModified% ?o .
+  graph <http://isi.edu/ckg/g/wd> {
+  	%root% %dateModified% ?o .
+  }
 };
 INSERT DATA {
-  %root% %dateModified% %date% .
+  graph <http://isi.edu/ckg/g/wd> {
+  	%root% %dateModified% %date% .
+  }
 }

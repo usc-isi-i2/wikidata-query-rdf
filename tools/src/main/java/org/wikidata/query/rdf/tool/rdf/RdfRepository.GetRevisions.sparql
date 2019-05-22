@@ -1,9 +1,11 @@
 SELECT DISTINCT ?s WHERE {
-  VALUES (?s ?rev) {
-    %values%
+  graph <http://isi.edu/ckg/g/wd> {
+	  VALUES (?s ?rev) {
+	    %values%
+	  }
+	  OPTIONAL {
+	     ?s %schema:version% ?repoRev
+	  }
+	  FILTER (!bound(?repoRev) || ?repoRev < ?rev)
   }
-  OPTIONAL {
-     ?s %schema:version% ?repoRev
-  }
-  FILTER (!bound(?repoRev) || ?repoRev < ?rev)
 }

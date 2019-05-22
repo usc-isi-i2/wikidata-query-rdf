@@ -1,7 +1,9 @@
 # Get lexeme IDs
 SELECT ?lex WHERE {
-  VALUES ?entity {
-     %entityList%
+  graph <http://isi.edu/ckg/g/wd> {
+	  VALUES ?entity {
+	     %entityList%
+	  }
+	  ?entity (ontolex:lexicalForm|ontolex:sense) ?lex .
   }
-  ?entity (ontolex:lexicalForm|ontolex:sense) ?lex .
 }
