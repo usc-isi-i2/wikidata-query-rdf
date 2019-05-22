@@ -285,35 +285,6 @@
                 </executions>
             </plugin>
             <plugin>
-                <groupId>org.codehaus.mojo</groupId>
-                <artifactId>exec-maven-plugin</artifactId>
-                <executions>
-                    <execution>
-                        <id>start-proxy</id>
-                        <goals>
-                            <goal>java</goal>
-                        </goals>
-                        <phase>pre-integration-test</phase>
-                        <configuration>
-                            <skip>${skipITs}</skip>
-                            <classpathScope>test</classpathScope>
-                            <mainClass>org.wikidata.query.rdf.tool.Proxy</mainClass>
-                            <arguments>
-                                <argument>--port</argument>
-                                <argument>8812</argument>
-                                <argument>--error</argument>
-                                <argument>503</argument>
-                                <argument>429</argument>
-                                <argument>--errorMod</argument>
-                                <argument>2</argument>
-                                <argument>--embedded</argument>
-                                <argument>-v</argument>
-                            </arguments>
-                        </configuration>
-                    </execution>
-                </executions>
-            </plugin>
-            <plugin>
                 <groupId>org.eclipse.jetty</groupId>
                 <artifactId>jetty-maven-plugin</artifactId>
                 <configuration>
